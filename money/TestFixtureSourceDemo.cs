@@ -26,7 +26,10 @@ namespace Money
         [TestFixtureSource(nameof(FixtureArgs))]
         public class MyTestClass
         {
-            public MyTestClass(string word, int num) { ... }
+            public MyTestClass(string word, int num) 
+            { 
+                //...
+                                                       }
 
             /* ... */
 

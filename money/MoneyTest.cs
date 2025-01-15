@@ -59,6 +59,15 @@ namespace Money
             ClassicAssert.IsTrue(fMB1.Multiply(0).IsZero);
         }
 
+
+        [TearDown]
+        public void Cleanup()
+        { 
+            /* ... */
+        }
+
+
+
         /// <summary>
         /// Assert that Moneybags negate(positive to negative values) correctly
         /// </summary>
