@@ -59,6 +59,21 @@ namespace Money
             ClassicAssert.IsTrue(fMB1.Multiply(0).IsZero);
         }
 
+        //此属性用于标识在执行夹具中的任何测试之前调用一次的方法。它可能出现在TestFixture或SetUpFixture的方法上。
+        //虽然可以在同一个类中定义多个OneTimeSetUp方法，但你很少应该这样做。与继承层次结构中单独类中定义的方法不同，它们的执行顺序没有保证。
+        //如果在下运行，OneTimeSetUp方法可能是异步的。NET 4.0或更高版本。
+        //OneTimeSetUp方法在TestFixture或SetUpFixture的上下文中运行，这与任何单个测试用例的上下文都是分开的。
+        //在使用TestContext方法和方法中的属性时，记住这一点很重要。
+        //将FixtureLifeCycle与LifeCycle一起使用时。InstancePerTestCase，OneTimeSetUp方法必须是静态的，并且只调用一次。这是必需的，这样安装方法就不会访问为每个测试重置的实例字段或属性。
+        //当在基类上设置该方法时，会为从该基类继承的每个夹具调用该方法，如果该基类不是抽象的，也会为该基类调用该方法。如果只需要运行一次，请使用SetUpFixture，或者将代码放入静态构造函数中。
+        [OneTimeSetUp]
+        public void Init()
+        { /* ... */ }
+
+        [OneTimeTearDown]
+        public void Cleanup2()
+        { /* ... */ }
+
 
         [TearDown]
         public void Cleanup()
@@ -66,6 +81,18 @@ namespace Money
             /* ... */
         }
 
+
+        //ParallelizableAttribute用于指示测试和/或其后代可以与其他测试并行运行。默认情况下，不进行并行执行。
+
+        //OrderAttribute可以放置在测试方法或夹具上，以指定测试在夹具或包含测试的其他套件中运行的顺序。排序由属性的必需顺序参数int给出。
+        //如前所述，订购是包含订购测试的测试的本地订购。对于测试用例（方法），订购适用于包含的夹具。对于夹具，它在包含的命名空间内应用。NUnit中没有全局订购测试的设施。
+        //具有OrderAttribute参数的测试在没有该属性的任何测试之前启动。
+        //有序测试按顺序参数的升序开始。
+        //在具有相同顺序值或没有属性的测试中，执行顺序是不确定的。
+        //测试不会等到之前的测试完成。如果正在使用多个线程，则可以在一些早期测试仍在运行时启动测试。
+
+
+       
 
 
         /// <summary>
