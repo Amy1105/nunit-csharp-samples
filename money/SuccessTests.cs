@@ -9,6 +9,20 @@ using System.Threading.Tasks;
 
 namespace Money
 {
+
+    /// <summary>
+    /// TestFixture和SetUpFixture在NUnit中的主要区别在于它们的作用范围和执行时机。
+    /// 
+    /// ‌TestFixture‌用于标记一个类包含测试代码，表明该类是用来进行测试的。它通常放在类定义之前
+    /// TestFixture的作用范围是整个测试类，它告诉NUnit这个类包含测试代码，NUnit会在运行时识别并执行该类中的所有测试方法
+    /// 
+    /// 
+    /// 
+    /// ‌SetUpFixture‌用于设置和清理测试环境，确保每个测试方法在执行前后都能有一个干净的环境。它有两个具体的属性：‌SetUp‌和‌TearDown‌。
+    /// ‌SetUp‌：在每个测试方法执行之前调用，用于初始化测试环境。
+    /// ‌TearDown‌：在每个测试方法执行之后调用，用于清理测试环境
+    /// 
+    /// </summary>
     [TestFixture]
     public class SuccessTests
     {
@@ -37,7 +51,7 @@ namespace Money
         /// 将检查此预期返回值是否与测试方法的返回值相等。
         /// </summary>
         /// <returns></returns>
-        [Test(ExpectedResult = 5)]
+        [Test(ExpectedResult =4)]
         public int TestAdd()
         {
             return 2 + 2;
@@ -354,4 +368,31 @@ namespace Money
 
 
     }
+
+
+    /// <summary>
+    /// 可以有多个SetUpFixture，但调用顺序不固定
+    /// </summary>
+    [SetUpFixture]
+    public class TestSetup
+    {
+        [OneTimeSetUp]
+        public void Setup()
+        {
+            // 初始化代码
+        }
+
+        // Alternate way to specify description as a separate attribute
+        [Test, Description("My really really cool test")]
+        public void Add3()
+        { /* ... */ }
+
+
+        [OneTimeTearDown]
+        public void TearDown()
+        {
+            // 清理代码
+        }
+    }
+
 }

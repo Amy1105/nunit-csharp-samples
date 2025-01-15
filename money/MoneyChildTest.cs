@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
+using System.Threading.Tasks;
 
 namespace Money
 {
@@ -69,5 +70,15 @@ namespace Money
 
 
         //如果测试方法返回值，则必须将ExpectedResult命名参数传递给test属性。将检查此预期返回值是否与测试方法的返回值相等。
+
+        //// Async test with an expected result
+        //[Test(ExpectedResult = 4)]
+        //public async Task<int> TestAdd()
+        //{
+        //    await  ...
+        //return 2 + 2;
+        //}
+
+
     }
 }

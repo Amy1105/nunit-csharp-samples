@@ -35,6 +35,7 @@ namespace Money.Attributes
     /// </summary>
     internal class TestFixtureTests
     {
+
     }
 
 
